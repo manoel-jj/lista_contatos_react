@@ -1,53 +1,53 @@
-// // reducers.ts
-// import {
-//   ContatosActionsTypes,
-//   ContatosAction
-// } from '../../components/utils/enums/contatosEnums'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import Contatos from '../../models/Contato'
+import * as enums from '../../components/utils/enums/contato'
 
-// interface Contato {
-//   id: number
-//   nome: string
-//   email: string
-//   telefone: string
-// }
+type ContatosState = {
+  lista: Contatos[]
+}
 
-// interface ContatosState {
-//   contatos: Contato[]
-// }
+const initialState: ContatosState = {
+  lista: []
+}
 
-// const initialState: ContatosState = {
-//   contatos: []
-// }
+const ContatosSlice = createSlice({
+  name: 'contatos',
+  initialState,
+  reducers: {
+    remover: (state, action: PayloadAction<number>) => {
+      state.lista = [
+        ...state.lista.filter((contato) => contato.id !== action.payload)
+      ]
+    },
+    editar: (state, action: PayloadAction<Contatos>) => {
+      const indexDoContato = state.lista.findIndex(
+        (t) => t.id === action.payload.id
+      )
+      if (indexDoContato >= 0) {
+        state.lista[indexDoContato] = action.payload
+      }
+    },
+    cadastrar: (state, action: PayloadAction<Omit<Contatos, 'id'>>) => {
+      const contatoJaExiste = state.lista.find(
+        (contato) =>
+          contato.nome.toLocaleUpperCase() === action.payload.nome.toLowerCase()
+      )
 
-// const contatosReducer = (
-//   state = initialState,
-//   action: ContatosAction
-// ): ContatosState => {
-//   switch (action.type) {
-//     case ContatosActionsTypes.ADICIONAR_CONTATO:
-//       // eslint-disable-next-line no-case-declarations
-//       const novoContato: Contato = {
-//         id: state.contatos.length + 1,
-//         nome: action.payload.nome,
-//         email: action.payload.email,
-//         telefone: action.payload.telefone
-//       }
-//       return {
-//         ...state,
-//         contatos: [...state.contatos, novoContato]
-//       }
-//     case ContatosActionsTypes.REMOVER_CONTATO:
-//       // eslint-disable-next-line no-case-declarations
-//       const contatosAtualizados = state.contatos.filter(
-//         (contato) => contato.id !== action.payload.id
-//       )
-//       return {
-//         ...state,
-//         contatos: contatosAtualizados
-//       }
-//     default:
-//       return state
-//   }
-// }
+      if (contatoJaExiste) {
+        alert('Já existe um contato com esse nome')
+      } else {
+        const ultimoContato = state.lista[state.lista.length - 1]
 
-// export default contatosReducer
+        const contatoNovo = {
+          ...action.payload,
+          id: ultimoContato ? ultimoContato.id + 1 : 1
+        }
+        state.lista.push(contatoNovo)
+      }
+    }
+  }
+})
+
+export const { remover, editar, cadastrar } = ContatosSlice.actions
+
+export default ContatosSlice.reducer
