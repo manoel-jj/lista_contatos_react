@@ -1,5 +1,12 @@
-// import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
+import contatoReducer from './reducers/contatos'
 
-// const store = configureStore({
-//   reducers: {}
-// })
+const store = configureStore({
+  reducer: {
+    contato: contatoReducer
+  }
+})
+
+export type RootReducer = ReturnType<typeof store.getState>
+
+export default store
