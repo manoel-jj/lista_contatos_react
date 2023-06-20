@@ -1,11 +1,11 @@
-export enum nome {
+export enum Nome {
   NOME = 'nome'
 }
 
-export enum email {
+export enum Email {
   EMAIL = 'email'
 }
 
-export enum telefone {
+export enum Telefone {
   TELEFONE = 'telefone'
 }

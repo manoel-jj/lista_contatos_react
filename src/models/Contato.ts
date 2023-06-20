@@ -1,15 +1,15 @@
 import * as enums from '../components/utils/enums/contato'
 
 class Contatos {
-  nome: enums.nome
-  email: enums.email
-  telefone: enums.telefone
+  nome: string
+  email: string
+  telefone: string
   id: number
 
   constructor(
-    nome: enums.nome,
-    email: enums.email,
-    telefone: enums.telefone,
+    nome: enums.Nome,
+    email: enums.Email,
+    telefone: enums.Telefone,
     id: number
   ) {
     this.nome = nome
