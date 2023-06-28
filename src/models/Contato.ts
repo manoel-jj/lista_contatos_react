@@ -1,5 +1,7 @@
 import * as enums from '../components/utils/enums/contato'
 
+// models demonstr ser bem util para toda alogica do programa em si
+
 class Contatos {
   nome: string
   email: string
