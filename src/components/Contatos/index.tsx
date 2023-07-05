@@ -6,10 +6,9 @@ import { editar, remover } from '../../store/reducers/contatos'
 
 type Props = ContatosClass
 
-const contato = ({ nome, email, telefone, id }: Props) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const dispach = useDispatch()
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+const Contato = ({ nome, email, telefone, id }: Props) => {
+  const dispatch = useDispatch()
+
   const [estaEditando, setEstaEditando] = useState(false)
 
   function cancelarEdicao() {
@@ -43,7 +42,7 @@ const contato = ({ nome, email, telefone, id }: Props) => {
           <>
             <button
               onClick={() => {
-                dispach(
+                dispatch(
                   editar({
                     nome,
                     email,
@@ -61,7 +60,7 @@ const contato = ({ nome, email, telefone, id }: Props) => {
         ) : (
           <>
             <button onClick={() => setEstaEditando(true)}>editar</button>
-            <button onClick={() => dispach(remover(id))}>remover</button>
+            <button onClick={() => dispatch(remover(id))}>remover</button>
           </>
         )}
       </div>
@@ -69,4 +68,4 @@ const contato = ({ nome, email, telefone, id }: Props) => {
   )
 }
 
-export default contato
+export default Contato

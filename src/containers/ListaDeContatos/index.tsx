@@ -1,16 +1,22 @@
-import { useState } from 'react'
-import * as S from './styles'
-import Cadastro from '../../pages/cadastro'
 import { useSelector } from 'react-redux'
+import Contato from '../../components/Contatos'
+import * as S from './styles'
 import { RootReducer } from '../../store'
-import contatos from '../../store/reducers/contatos'
 
 const ListaDeContatos = () => {
   const { lista } = useSelector((state: RootReducer) => state.contato)
+  const { termo } = useSelector((state: RootReducer) => state.filtro)
 
-  function excluiContato(index: any): void {
-    throw new Error('Function not implemented.')
+  const filtraContatos = () => {
+    let contatosFiltradas = lista
+    if (termo !== undefined) {
+      contatosFiltradas = contatosFiltradas.filter(
+        (lista) => lista.nome.toLowerCase().search(termo.toLowerCase()) >= 0
+      )
+      return contatosFiltradas
+    }
   }
+  const contatos = filtraContatos() ?? []
 
   return (
     <>
@@ -27,13 +33,16 @@ const ListaDeContatos = () => {
             </tr>
           </thead>
           <tbody>
-            {contatos.map((contato, index) => (
-              <tr key={index}>
-                <S.Nome>{contato.nome}</S.Nome>
-                <S.Email>{contato.email}</S.Email>
-                <S.Telefone>{contato.telefone}</S.Telefone>
+            {contatos.map((t) => (
+              <tr key={t.nome}>
+                <Contato
+                  id={t.id}
+                  nome={t.nome}
+                  email={t.email}
+                  telefone={t.telefone}
+                />
                 <td>
-                  <button onClick={() => excluiContato(index)}>Excluir</button>
+                  <button>Excluir</button>
                 </td>
               </tr>
             ))}
@@ -45,31 +54,3 @@ const ListaDeContatos = () => {
 }
 
 export default ListaDeContatos
-
-//codigo chat para resolver o poroblema, map não esta presente no reducer deve se usar o metodo abaixo
-const contatosReducer: Reducer<ContatosState> = (state, action) => {
-  // ...
-  const { contatos } = state // Acessando o array de contatos do estado
-
-  // Renderizando as linhas da tabela com base nos contatos
-  const linhasTabela = contatos.map((contato, index) => (
-    <tr key={index}>
-      <S.Nome>{contato.nome}</S.Nome>
-      <S.Email>{contato.email}</S.Email>
-      <S.Telefone>{contato.telefone}</S.Telefone>
-      {/* Coloque aqui o restante do código que você precisa renderizar para cada contato */}
-    </tr>
-  ))
-
-  // ...
-
-  // Restante da lógica do reducer
-
-  // ...
-
-  // Retorne o resultado final do reducer, incluindo as linhas da tabela
-  return {
-    ...state,
-    linhasTabela: linhasTabela
-  }
-}
