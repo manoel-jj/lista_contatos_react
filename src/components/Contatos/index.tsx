@@ -31,39 +31,45 @@ const Contato = ({ nome, email, telefone, id }: Props) => {
             <S.Nome parametro="nome">{nome}</S.Nome>
             <S.Email parametro="email">{email}</S.Email>
             <S.Telefone parametro="telefone">{telefone}</S.Telefone>
-            <td>
-              <button>Excluir</button>
-            </td>
+            <S.Acoes>
+              {' '}
+              <div>
+                {estaEditando ? (
+                  <>
+                    <button
+                      onClick={() => {
+                        dispatch(
+                          editar({
+                            nome,
+                            email,
+                            telefone,
+                            id
+                          })
+                        )
+                        setEstaEditando(false)
+                      }}
+                    >
+                      salvar
+                    </button>
+                    <button onClick={cancelarEdicao}>cancelar</button>
+                  </>
+                ) : (
+                  <>
+                    <tr>
+                      <button onClick={() => setEstaEditando(true)}>
+                        editar
+                      </button>
+                    </tr>
+                    <button onClick={() => dispatch(remover(id))}>
+                      remover
+                    </button>
+                  </>
+                )}
+              </div>
+            </S.Acoes>
           </tr>
         </tbody>
       </S.Table>
-      <div>
-        {estaEditando ? (
-          <>
-            <button
-              onClick={() => {
-                dispatch(
-                  editar({
-                    nome,
-                    email,
-                    telefone,
-                    id
-                  })
-                )
-                setEstaEditando(false)
-              }}
-            >
-              salvar
-            </button>
-            <button onClick={cancelarEdicao}>cancelar</button>
-          </>
-        ) : (
-          <>
-            <button onClick={() => setEstaEditando(true)}>editar</button>
-            <button onClick={() => dispatch(remover(id))}>remover</button>
-          </>
-        )}
-      </div>
     </>
   )
 }

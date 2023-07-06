@@ -44,3 +44,9 @@ export const Telefone = styled.td<TagProps>`
   text-align: left;
   color: #34a853;
 `
+export const Acoes = styled.td`
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  color: #34a853;
+`

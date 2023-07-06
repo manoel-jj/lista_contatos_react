@@ -24,14 +24,6 @@ const ListaDeContatos = () => {
         <S.Pesquisa type="text" placeholder="Pesquisa" />
 
         <S.Table>
-          <thead>
-            <tr>
-              <S.TableHeader>Nome</S.TableHeader>
-              <S.TableHeader>Email</S.TableHeader>
-              <S.TableHeader>Telefone</S.TableHeader>
-              <S.TableHeader>Ações</S.TableHeader>
-            </tr>
-          </thead>
           <tbody>
             {contatos.map((t) => (
               <tr key={t.nome}>
@@ -41,9 +33,6 @@ const ListaDeContatos = () => {
                   email={t.email}
                   telefone={t.telefone}
                 />
-                <td>
-                  <button>Excluir</button>
-                </td>
               </tr>
             ))}
           </tbody>
