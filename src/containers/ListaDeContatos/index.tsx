@@ -26,14 +26,13 @@ const ListaDeContatos = () => {
         <S.Table>
           <tbody>
             {contatos.map((t) => (
-              <tr key={t.nome}>
-                <Contato
-                  id={t.id}
-                  nome={t.nome}
-                  email={t.email}
-                  telefone={t.telefone}
-                />
-              </tr>
+              <Contato
+                key={t.nome}
+                id={t.id}
+                nome={t.nome}
+                email={t.email}
+                telefone={t.telefone}
+              />
             ))}
           </tbody>
         </S.Table>

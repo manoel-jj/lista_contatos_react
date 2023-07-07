@@ -3,6 +3,7 @@ import { FormEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { cadastrar } from '../../store/reducers/contatos'
+import * as S from './styles'
 
 const Formulario = () => {
   const dispatch = useDispatch()
@@ -26,7 +27,7 @@ const Formulario = () => {
   }
 
   return (
-    <>
+    <S.FormContainer>
       <h3>Adicionar novo contato</h3>
       <form onSubmit={cadastrarContato}>
         <input
@@ -49,7 +50,7 @@ const Formulario = () => {
         />
         <button type="submit">Cadastrar</button>
       </form>
-    </>
+    </S.FormContainer>
   )
 }
 

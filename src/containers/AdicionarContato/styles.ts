@@ -1,38 +1,26 @@
 import styled from 'styled-components'
 
-export const Pesquisa = styled.input`
-  font-size: 24px;
-`
-export const Table = styled.table`
-  border-collapse: collapse;
-  width: 100%;
-`
+export const FormContainer = styled.div`
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
 
-export const TableHeader = styled.th`
-  background-color: #f2f2f2;
-  color: #444;
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-`
+  form {
+    display: flex;
+    flex-direction: column;
 
-export const Nome = styled.td`
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-  font-weight: bold;
-`
+    input {
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
 
-export const Email = styled.td`
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-  color: #4285f4;
-`
-
-export const Telefone = styled.td`
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-  color: #34a853;
+    button {
+      padding: 0.5rem 1rem;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  }
 `

@@ -1,12 +1,4 @@
 import styled from 'styled-components'
-import * as enums from '../utils/enums/contato'
-
-type TagProps = {
-  nome?: enums.Nome
-  email?: enums.Email
-  telefone?: enums.Telefone
-  parametro: 'nome' | 'email' | 'telefone'
-}
 
 export const Pesquisa = styled.input`
   font-size: 24px;
@@ -24,21 +16,21 @@ export const TableHeader = styled.th`
   text-align: left;
 `
 
-export const Nome = styled.td<TagProps>`
+export const Nome = styled.td`
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
   font-weight: bold;
 `
 
-export const Email = styled.td<TagProps>`
+export const Email = styled.td`
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
   color: #4285f4;
 `
 
-export const Telefone = styled.td<TagProps>`
+export const Telefone = styled.td`
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
