@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import Contatos from '../../models/Contato'
 
 type ContatosState = {
-  lista: Contatos[]
+  listaContatos: Contatos[]
 }
 
 const initialState: ContatosState = {
-  lista: []
+  listaContatos: []
 }
 
 const ContatosSlice = createSlice({
@@ -14,20 +14,22 @@ const ContatosSlice = createSlice({
   initialState,
   reducers: {
     remover: (state, action: PayloadAction<number>) => {
-      state.lista = [
-        ...state.lista.filter((contato) => contato.id !== action.payload)
+      state.listaContatos = [
+        ...state.listaContatos.filter(
+          (contato) => contato.id !== action.payload
+        )
       ]
     },
     editar: (state, action: PayloadAction<Contatos>) => {
-      const indexDoContato = state.lista.findIndex(
+      const indexDoContato = state.listaContatos.findIndex(
         (t) => t.id === action.payload.id
       )
       if (indexDoContato >= 0) {
-        state.lista[indexDoContato] = action.payload
+        state.listaContatos[indexDoContato] = action.payload
       }
     },
     cadastrar: (state, action: PayloadAction<Omit<Contatos, 'id'>>) => {
-      const contatoJaExiste = state.lista.find(
+      const contatoJaExiste = state.listaContatos.find(
         (contato) =>
           contato.nome.toLocaleUpperCase() === action.payload.nome.toLowerCase()
       )
@@ -35,13 +37,17 @@ const ContatosSlice = createSlice({
       if (contatoJaExiste) {
         alert('Já existe um contato com esse nome')
       } else {
-        const ultimoContato = state.lista[state.lista.length - 1]
+        const ultimoContato =
+          state.listaContatos[state.listaContatos.length - 1]
 
         const contatoNovo = {
           ...action.payload,
           id: ultimoContato ? ultimoContato.id + 1 : 1
         }
-        state.lista.push(contatoNovo)
+        state.listaContatos.push(contatoNovo)
+        console.log('Estado atualizado:', [...state.listaContatos])
+
+        console.log('Estado atualizado:', state.listaContatos)
       }
     }
   }
