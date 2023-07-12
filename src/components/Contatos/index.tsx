@@ -10,31 +10,19 @@ const Contato = ({ nome, email, telefone, id }: Props) => {
 
   return (
     <>
-      <S.Table>
-        <thead>
-          <tr>
-            <S.TableHeader>Nome</S.TableHeader>
-            <S.TableHeader>Email</S.TableHeader>
-            <S.TableHeader>Telefone</S.TableHeader>
-            <S.TableHeader>Ações</S.TableHeader>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <S.Nome>{nome}</S.Nome>
-            <S.Email>{email}</S.Email>
-            <S.Telefone>{telefone}</S.Telefone>
-            <S.Acoes>
-              {' '}
-              <div>
-                <>
-                  <button onClick={() => dispatch(remover(id))}>remover</button>
-                </>
-              </div>
-            </S.Acoes>
-          </tr>
-        </tbody>
-      </S.Table>
+      <tr>
+        <S.Nome>{nome}</S.Nome>
+        <S.Email>{email}</S.Email>
+        <S.Telefone>{telefone}</S.Telefone>
+        <S.Acoes>
+          {' '}
+          <div>
+            <>
+              <button onClick={() => dispatch(remover(id))}>remover</button>
+            </>
+          </div>
+        </S.Acoes>
+      </tr>
     </>
   )
 }

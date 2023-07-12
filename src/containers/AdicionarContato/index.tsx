@@ -14,8 +14,9 @@ const Formulario = () => {
   const [telefone, setTelefone] = useState('')
 
   const cadastrarContato = (evento: FormEvent) => {
+    console.log('Enviando formulário...')
     evento.preventDefault()
-
+    console.log('Dispatching cadastrar...')
     dispatch(
       cadastrar({
         nome,
