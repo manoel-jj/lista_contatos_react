@@ -13,7 +13,7 @@ const rotas = createBrowserRouter([
     element: <Home />
   },
   {
-    path: '/cadastro',
+    path: '/novocontato',
     element: <Cadastro />
   }
 ])

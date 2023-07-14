@@ -18,18 +18,14 @@ const BarraLateral = ({ mostrarBarra }: Props) => {
       <div>
         {mostrarBarra ? (
           <S.linkLateral>
-            <div>
-              <a href="">Contatos</a>
-            </div>
-
-            <a href="/cadastro">
-              <button>Criar novo contato</button>
-            </a>
+            <S.botao type="button" onClick={() => navigate('novocontato')}>
+              Criar novo contato
+            </S.botao>
           </S.linkLateral>
         ) : (
-          <button type="button" onClick={() => navigate('/')}>
+          <S.botao type="button" onClick={() => navigate('/')}>
             Voltar a lista de Contatos
-          </button>
+          </S.botao>
         )}
       </div>
     </S.Aside>

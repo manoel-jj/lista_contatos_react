@@ -20,18 +20,11 @@ const ContatosSlice = createSlice({
         )
       ]
     },
-    editar: (state, action: PayloadAction<Contatos>) => {
-      const indexDoContato = state.listaContatos.findIndex(
-        (t) => t.id === action.payload.id
-      )
-      if (indexDoContato >= 0) {
-        state.listaContatos[indexDoContato] = action.payload
-      }
-    },
+
     cadastrar: (state, action: PayloadAction<Omit<Contatos, 'id'>>) => {
       const contatoJaExiste = state.listaContatos.find(
         (contato) =>
-          contato.nome.toLocaleUpperCase() === action.payload.nome.toLowerCase()
+          contato.nome.toLowerCase() === action.payload.nome.toLowerCase()
       )
 
       if (contatoJaExiste) {
@@ -45,14 +38,11 @@ const ContatosSlice = createSlice({
           id: ultimoContato ? ultimoContato.id + 1 : 1
         }
         state.listaContatos.push(contatoNovo)
-        console.log('Estado atualizado:', [...state.listaContatos])
-
-        console.log('Estado atualizado:', state.listaContatos)
       }
     }
   }
 })
 
-export const { remover, editar, cadastrar } = ContatosSlice.actions
+export const { remover, cadastrar } = ContatosSlice.actions
 
 export default ContatosSlice.reducer

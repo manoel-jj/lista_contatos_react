@@ -15,13 +15,6 @@ export const linkLateral = styled.div`
     margin: 5px;
   }
 
-  button {
-    background-color: black;
-    color: green;
-    font-size: 16px;
-    margin-top: 5px;
-  }
-
   a {
     color: green;
     font-size: 16px;
@@ -38,4 +31,11 @@ export const imgContato = styled.div`
     display: flex;
     color: green;
   }
+`
+
+export const botao = styled.button`
+  background-color: black;
+  color: green;
+  font-size: 16px;
+  margin-top: 5px;
 `

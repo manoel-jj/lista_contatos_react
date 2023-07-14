@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react'
-
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import InputMask from 'react-input-mask'
 import { cadastrar } from '../../store/reducers/contatos'
 import * as S from './styles'
 
@@ -14,17 +14,19 @@ const Formulario = () => {
   const [telefone, setTelefone] = useState('')
 
   const cadastrarContato = (evento: FormEvent) => {
-    console.log('Enviando formulário...')
     evento.preventDefault()
-    console.log('Dispatching cadastrar...')
-    dispatch(
-      cadastrar({
-        nome,
-        email,
-        telefone
-      })
-    )
-    navigate('/')
+    if (nome && email && telefone) {
+      dispatch(
+        cadastrar({
+          nome,
+          email,
+          telefone
+        })
+      )
+      navigate('/')
+    } else {
+      alert('Por favor, preencha todos os campos.')
+    }
   }
 
   return (
@@ -36,17 +38,19 @@ const Formulario = () => {
           onChange={(evento) => setNome(evento.target.value)}
           type="text"
           placeholder="Nome"
+          required
         />
         <input
           value={email}
           onChange={(evento) => setEmail(evento.target.value)}
-          type="text"
+          type="email"
           placeholder="email"
+          required
         />
-        <input
+        <InputMask
           value={telefone}
           onChange={(evento) => setTelefone(evento.target.value)}
-          type="number"
+          mask="(99) 9 9999-9999"
           placeholder="telefone"
         />
         <button type="submit">Cadastrar</button>
